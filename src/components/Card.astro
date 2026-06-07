@@ -1,0 +1,51 @@
+---
+/*
+ * SCAFFOLD: minimal project tile — cover + title + year only. Two parallel
+ * tickets build this out:
+ *   - "card content + hover" (this file): description, tech chips, hover.
+ *   - "robust cover image handling" (CardCover.astro): blurred-fill + <Image>.
+ *
+ * Keep the data-* search/filter contract and the /projects/[id] link — the
+ * filter, search, and detail nav depend on them.
+ *
+ * data-* contract (read from entry data, independent of what's shown):
+ *   - filter uses data-domain + data-year
+ *   - search uses those plus data-title / data-tech / data-author /
+ *     data-description (tech & author are comma-joined; match case-insensitively)
+ */
+import type { CollectionEntry } from 'astro:content';
+import CardCover from './CardCover.astro';
+
+interface Props {
+  entry: CollectionEntry<'projects'>;
+}
+
+const { entry } = Astro.props;
+const { data, id } = entry;
+---
+
+<article
+  data-domain={data.domain}
+  data-year={data.year}
+  data-title={data.title}
+  data-tech={data.tech.join(', ')}
+  data-author={data.builtBy.map((person) => person.name).join(', ')}
+  data-description={data.description}
+  class="border-line bg-surface overflow-hidden rounded-[var(--radius-card)] border"
+>
+  <a href={`/projects/${id}`} class="block">
+    <CardCover cover={data.cover} title={data.title} />
+    <div class="p-4">
+      <div class="flex items-baseline justify-between gap-2">
+        <h2 class="font-semibold tracking-tight">{data.title}</h2>
+        <span class="text-muted shrink-0 text-xs">{data.year}</span>
+      </div>
+      {
+        /* Plain text — the whole card is already a link, so no nested anchors. */
+      }
+      <p class="text-muted mt-1 text-sm">
+        Built by {data.builtBy.map((person) => person.name).join(', ')}
+      </p>
+    </div>
+  </a>
+</article>

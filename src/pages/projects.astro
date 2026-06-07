@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Card from '../components/Card.astro';
+
+const projects = await getCollection('projects');
+projects.sort((a, b) => b.data.year - a.data.year);
+---
+
+<Base title="Projects · CCSS Showcase">
+  <h1 class="text-2xl font-bold tracking-tight">Projects</h1>
+  <p class="text-muted mt-1">
+    Projects built by Carleton Computer Science students.
+  </p>
+
+  {
+    /*
+    FILTER BAR insertion point — "domain + year filter" ticket.
+    Add filter-button controls here that toggle a `hidden` class on cards by
+    their data-domain / data-year attributes. All cards stay in the DOM (no
+    pagination), so filtering and any reveal-on-scroll enhancement both work.
+  */
+  }
+
+  <ul
+    id="project-grid"
+    class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+  >
+    {
+      projects.map((entry) => (
+        <li>
+          <Card entry={entry} />
+        </li>
+      ))
+    }
+  </ul>
+</Base>

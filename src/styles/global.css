@@ -1,0 +1,64 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens (Carleton theme, light mode).
+ *
+ * Defined via Tailwind v4 `@theme`, so each token both:
+ *   - generates a utility (e.g. `bg-canvas`, `text-ink`, `border-line`, `bg-accent`)
+ *   - is emitted as a CSS custom property on :root, so complex components that
+ *     don't fit utilities (ring graph, motion background) can use them directly
+ *     in a scoped <style> via var(--color-accent), etc.
+ *
+ * Tokens are SEMANTIC (canvas/surface/ink/...), not literal color names, so a
+ * later dark-mode ticket only needs to override these values under a selector /
+ * media query — no markup changes.
+ */
+@theme {
+  --color-canvas: #f6f5f3; /* page background — slightly off-white */
+  --color-surface: #ffffff; /* cards, panels */
+  --color-ink: #131313; /* Carleton black — primary text */
+  --color-muted: #5c5c5c; /* secondary / supporting text */
+  --color-accent: #ef1a1a; /* Carleton red */
+  --color-accent-contrast: #ffffff; /* text/icons on an accent background */
+  --color-line: #e4e1dc; /* borders, dividers */
+
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+
+  --radius-card: 0.75rem;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+  }
+}
+
+/*
+ * Shared page width. Full width with side padding on small screens; ~80% of the
+ * viewport (capped) on desktop. Used by the header, main, and footer so all
+ * three stay aligned. Change the width/cap here, not per-page.
+ */
+.site-container {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1600px;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .site-container {
+    width: 80%;
+    padding-inline: 0;
+  }
+}

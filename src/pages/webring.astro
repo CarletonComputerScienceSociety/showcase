@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import RingGraph from '../components/RingGraph.astro';
+
+const members = await getCollection('webring');
+members.sort((a, b) => a.data.name.localeCompare(b.data.name));
+
+const displayUrl = (url: string) =>
+  url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+---
+
+<Base title="Webring · CCSS Showcase">
+  <h1 class="text-2xl font-bold tracking-tight">Webring</h1>
+  <p class="text-muted mt-1">
+    Personal sites of Carleton Computer Science students, linked into a ring.
+  </p>
+
+  {
+    /*
+    Two-column layout: directory table + graph panel. Stacks on mobile (table
+    first). The "webring directory design" ticket polishes the table; the
+    "optional social links" ticket adds a Links column with icons.
+  */
+  }
+  <div class="mt-6 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+    <section>
+      <table class="w-full border-collapse text-sm">
+        <thead>
+          <tr
+            class="border-line text-muted border-b text-left text-xs uppercase"
+          >
+            <th class="py-2 pr-4 font-normal">Name</th>
+            <th class="py-2 pr-4 font-normal">Grad</th>
+            <th class="py-2 font-normal">Site</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            members.map((member) => (
+              <tr class="border-line border-b">
+                <td class="py-3 pr-4 font-medium">{member.data.name}</td>
+                <td class="text-muted py-3 pr-4">{member.data.year}</td>
+                <td class="py-3">
+                  <a
+                    href={member.data.url}
+                    class="hover:text-accent"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    {displayUrl(member.data.url)}
+                  </a>
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </section>
+
+    <aside class="lg:sticky lg:top-8 lg:self-start">
+      <RingGraph />
+    </aside>
+  </div>
+</Base>

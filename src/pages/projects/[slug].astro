@@ -1,0 +1,112 @@
+---
+/*
+ * Project detail page.
+ *
+ * SCAFFOLD: neutral, token-based baseline. The "detail page design" ticket
+ * polishes the layout and should switch the cover <img> to astro:assets <Image>
+ * for byte optimization (then set sharp: true in pnpm-workspace.yaml). The
+ * <Content /> block renders the contributor's markdown body — give it real
+ * prose styling (the project has no typography plugin yet).
+ */
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+---
+
+<Base title={`${data.title} · CCSS Showcase`} description={data.description}>
+  <a href="/projects" class="text-muted hover:text-accent text-sm"
+    >&larr; All projects</a
+  >
+
+  <article class="mt-4">
+    <header class="flex flex-col gap-3">
+      <div class="flex flex-wrap items-baseline justify-between gap-2">
+        <h1 class="text-3xl font-bold tracking-tight">{data.title}</h1>
+        <span class="text-muted text-sm">{data.domain} · {data.year}</span>
+      </div>
+      <p class="text-muted text-lg">{data.description}</p>
+
+      <p class="text-muted text-sm">
+        Built by{' '}
+        {
+          data.builtBy.map((person, i) => (
+            <Fragment>
+              {i > 0 && ', '}
+              {person.url ? (
+                <a
+                  href={person.url}
+                  class="hover:text-accent underline"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  {person.name}
+                </a>
+              ) : (
+                person.name
+              )}
+            </Fragment>
+          ))
+        }
+      </p>
+
+      <ul class="flex flex-wrap gap-1.5">
+        {
+          data.tech.map((t) => (
+            <li class="border-line text-muted rounded-full border px-2 py-0.5 text-xs">
+              {t}
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="flex flex-wrap gap-3">
+        <a
+          href={data.github}
+          target="_blank"
+          rel="noopener"
+          class="bg-ink text-canvas hover:bg-accent rounded-md px-3 py-1.5 text-sm"
+        >
+          GitHub
+        </a>
+        {
+          data.deploy && (
+            <a
+              href={data.deploy}
+              target="_blank"
+              rel="noopener"
+              class="border-line hover:text-accent rounded-md border px-3 py-1.5 text-sm"
+            >
+              Live site
+            </a>
+          )
+        }
+      </div>
+    </header>
+
+    <img
+      src={data.cover.src}
+      alt={`Cover image for ${data.title}`}
+      width={data.cover.width}
+      height={data.cover.height}
+      class="border-line mt-6 w-full rounded-[var(--radius-card)] border"
+    />
+
+    {
+      /* Contributor markdown body — needs prose styling (detail design ticket). */
+    }
+    <div class="mt-8 flex flex-col gap-4">
+      <Content />
+    </div>
+  </article>
+</Base>

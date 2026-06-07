@@ -1,0 +1,27 @@
+---
+/*
+ * SCAFFOLD: minimal cover for the project tile — plain <img> with object-cover
+ * (crops). The "robust cover image handling" ticket replaces the internals with
+ * a blurred-backdrop fill + astro:assets <Image>. This component is owned by
+ * that ticket; keep the 16:9 tile shape (matches a typical desktop screenshot).
+ */
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  cover: ImageMetadata;
+  title: string;
+}
+
+const { cover, title } = Astro.props;
+---
+
+<div class="bg-canvas aspect-video overflow-hidden">
+  <img
+    src={cover.src}
+    alt={`Cover image for ${title}`}
+    width={cover.width}
+    height={cover.height}
+    loading="lazy"
+    class="h-full w-full object-cover"
+  />
+</div>

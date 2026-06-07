@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # pnpm version comes from the "packageManager" field in package.json
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      # --frozen-lockfile installs exactly from pnpm-lock.yaml; combined with the
+      # supply-chain policies in pnpm-workspace.yaml this fails the build if the
+      # lockfile drifts or violates policy.
+      - run: pnpm install --frozen-lockfile
+
+      # Formatting, then content/type validation (invalid project or webring
+      # entries fail here), then the production build.
+      - run: pnpm format:check
+      - run: pnpm check
+      - run: pnpm build
