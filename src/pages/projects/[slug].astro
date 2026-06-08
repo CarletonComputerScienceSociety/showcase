@@ -10,6 +10,7 @@
  */
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import { DOMAIN_LABELS } from '../../lib/domains';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -37,7 +38,9 @@ const { Content } = await render(entry);
       <div class="flex flex-wrap items-baseline justify-between gap-2">
         <h1 class="text-3xl font-bold tracking-tight">{data.title}</h1>
         <span class="text-muted text-sm"
-          >{data.domains.join(', ')} · {data.year}</span
+          >{data.domains.map((d) => DOMAIN_LABELS[d]).join(', ')} · {
+            data.year
+          }</span
         >
       </div>
       <p class="text-muted text-lg">{data.description}</p>
