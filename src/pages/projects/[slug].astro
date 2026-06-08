@@ -24,7 +24,10 @@ const { data } = entry;
 const { Content } = await render(entry);
 ---
 
-<Base title={`${data.title} · Carleton Computer Science Showcase`} description={data.description}>
+<Base
+  title={`${data.title} · Carleton Computer Science Showcase`}
+  description={data.description}
+>
   <a href="/projects" class="text-muted hover:text-accent text-sm"
     >&larr; All projects</a
   >
