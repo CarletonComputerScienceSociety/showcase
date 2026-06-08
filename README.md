@@ -1,4 +1,4 @@
-# CCSS Showcase
+# Carleton Computer Science Showcase
 
 A student-built **project showcase + webring** for the Carleton Computer Science Society. Students submit a project (a tile linking to a detail page) or add their personal site to the webring — all via pull request, no backend.
 
