@@ -1,0 +1,12 @@
+- pnpm dlx @astrojs/upgrade has breaking changes, do we want to upgrade still?
+- icon preference for toggle button? is there already an example from previous CCSS websites? (Maybe sun/moon)
+
+
+Tasks:
+1. First Visit = OS prefers-color-scheme
+2. After User Clicks Toggle = remember choice in localStorage and use it on every later visit, ignoring OS preference
+
+Files to Modify:
+- src/styles/global.css (dark token values)
+- src/layouts/Base.astro (one tiny inline <head> script, no-flash init)
+- src/components/Header.astro (just the toggle button, on the far right, nothing else)
