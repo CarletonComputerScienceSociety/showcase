@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@custom-variant dark (&:where(.dark, .dark *)); /* May break, unrecognized rule */
+@custom-variant dark (&:where(.dark, .dark *));
 
 /*
  * Design tokens (Carleton theme, light mode).
@@ -30,10 +30,9 @@
   --radius-card: 0.75rem;
 }
 
-/* Dark Mode, may need to adjust as see fit */
 html.dark {
-  --color-canvas: #131313; /* Carleton black — page background */
-  --color-surface: #1d1d1d; /* cards, panels — a step lighter than canvas */
+  --color-canvas: #1b1b1b; /* Carleton black — page background */
+  --color-surface: #242526; /* cards, panels — a step lighter than canvas */
   --color-ink: #f4f3f1; /* primary text — the light off-white */
   --color-muted: #9a9a9a; /* secondary text */
   --color-accent: #ff3b3b; /* slightly brightened Carleton red for dark bg */

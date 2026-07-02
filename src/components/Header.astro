@@ -7,7 +7,6 @@ const navLinks = [
 const path = Astro.url.pathname;
 ---
 
-<!-- Import Lucide Icons -->
 <header class="border-line border-b">
   <div class="site-container flex items-center justify-between gap-4 py-4">
     <a href="/projects" class="text-lg font-bold tracking-tight">
@@ -36,6 +35,7 @@ const path = Astro.url.pathname;
         aria-label="Toggle dark mode"
         class="text-muted hover:text-accent inline-flex items-center justify-center transition-colors"
       >
+        <!-- Import Lucide Icons -->
         <Icon name="lucide:sun" class="hidden size-5 dark:inline" />
         <Icon name="lucide:moon" class="size-5 dark:hidden" />
       </button>
