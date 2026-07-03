@@ -1,14 +1,14 @@
 ---
-title: 'Example Project'
+title: 'Example Project 8'
 description: 'A demonstration project showing the structure of a showcase entry.'
 builtBy:
-  - name: 'Example Student'
-    url: 'https://example.com'
+  - name: 'Example Student 8'
+    url: 'https://example.com/student-8'
 tech: ['TypeScript', 'Astro', 'pnpm']
 year: 2025
 domains: ['web']
-github: 'https://github.com/example/example-project'
-deploy: 'https://example-project.pages.dev'
+github: 'https://github.com/example/example-project-8'
+deploy: 'https://example-project-8.pages.dev'
 cover: './cover.png'
 ---
 
