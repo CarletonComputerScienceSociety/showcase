@@ -6,7 +6,7 @@ builtBy:
     url: 'https://example.com/student-6'
   - name: 'Example Student 8'
     url: 'https://example.com/student-8'
-tech: ['TypeScript', 'Astro', 'pnpm']
+tech: ['TypeScript', 'C#', 'Python']
 year: 2025
 domains: ['web', 'ai-ml']
 github: 'https://github.com/example/example-project-6'

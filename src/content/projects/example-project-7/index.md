@@ -4,7 +4,7 @@ description: 'A demonstration project showing the structure of a showcase entry.
 builtBy:
   - name: 'Example Student 7'
     url: 'https://example.com/student-7'
-tech: ['TypeScript', 'Astro', 'pnpm']
+tech: ['TypeScript', 'Java', 'Rust']
 year: 2024
 domains: ['infrastructure','hardware']
 github: 'https://github.com/example/example-project-7'
