@@ -4,9 +4,13 @@ description: 'A demonstration project showing the structure of a showcase entry.
 builtBy:
   - name: 'Example Student 3'
     url: 'https://example.com/student-3'
+  - name: 'Example Student 4'
+    url: 'https://example.com/student-4'
+  - name: 'Example Student 6'
+    url: ''
 tech: ['TypeScript', 'Astro', 'pnpm']
 year: 2025
-domains: ['web']
+domains: ['ai-ml', 'web']
 github: 'https://github.com/example/example-project-3'
 deploy: 'https://example-project-3.pages.dev'
 cover: './cover.png'

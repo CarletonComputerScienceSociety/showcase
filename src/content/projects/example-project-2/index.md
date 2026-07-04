@@ -5,8 +5,8 @@ builtBy:
   - name: 'Example Student 2'
     url: 'https://example.com/student-2'
 tech: ['TypeScript', 'Astro', 'pnpm']
-year: 2025
-domains: ['web']
+year: 2022
+domains: ['mobile']
 github: 'https://github.com/example/example-project-2'
 deploy: 'https://example-project-2.pages.dev'
 cover: './cover.png'
