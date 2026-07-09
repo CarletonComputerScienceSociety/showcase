@@ -46,6 +46,10 @@ const { data, id } = entry;
       }
       <p class="text-muted mt-1 text-sm">
         Built by {data.builtBy.map((person) => person.name).join(', ')}
+
+        <p class="text-muted line-clamp-2 text-sm">
+          {data.description}
+        </p>
       </p>
     </div>
   </a>
