@@ -51,6 +51,18 @@ const { data, id } = entry;
           {data.description}
         </p>
       </p>
+
+      <ul
+        class="mt-2 flex max-h-12 flex-wrap items-start gap-1 overflow-hidden"
+      >
+        {
+          data.tech.map((t) => (
+            <li class="border-line text-muted rounded-full border px-2 py-0.5 text-xs">
+              {t}
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </a>
 </article>
