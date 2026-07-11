@@ -5,13 +5,12 @@ builtBy:
   - name: 'Example Student 8'
     url: 'https://example.com/student-8'
   - name: 'Example Student 6'
-    url:  ''
 tech: ['TypeScript', 'Astro', 'pnpm']
 year: 2021
 domains: ['web']
 github: 'https://github.com/example/example-project-8'
 deploy: 'https://example-project-8.pages.dev'
-cover: ''
+cover: './cover.png'
 ---
 
 ## Overview

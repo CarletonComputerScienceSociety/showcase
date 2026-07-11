@@ -8,7 +8,6 @@ tech: ['TypeScript', 'Java', 'Rust']
 year: 2024
 domains: ['infrastructure','hardware']
 github: 'https://github.com/example/example-project-7'
-deploy: 'https://example-project-7.pages.dev'
 cover: './cover.png'
 ---
 

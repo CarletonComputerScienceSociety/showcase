@@ -10,9 +10,8 @@ builtBy:
     url: 'https://example.com/student-4'
 tech: ['TypeScript', 'pnpm']
 year: 2021
-domains: ['web',cypersecurity]
+domains: ['web',cybersecurity]
 github: 'https://github.com/example/example-project-1'
-deploy: 'https://example-project-1.pages.dev'
 cover: './cover.png'
 ---
 

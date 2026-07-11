@@ -11,7 +11,7 @@ year: 2025
 domains: ['web', 'ai-ml']
 github: 'https://github.com/example/example-project-6'
 deploy: 'https://example-project-6.pages.dev'
-cover: ''
+cover: './cover.png'
 ---
 
 ## Overview
