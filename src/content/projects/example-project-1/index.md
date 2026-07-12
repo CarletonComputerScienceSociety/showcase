@@ -8,7 +8,7 @@ builtBy:
     url: 'https://example.com/student-3'
   - name: 'Example Student 4'
     url: 'https://example.com/student-4'
-tech: ['TypeScript', 'pnpm']
+tech: ['TypeScript', 'pnpm', 'TypeScript', 'pnpm', 'TypeScript', 'pnpm']
 year: 2021
 domains: ['web', 'cybersecurity']
 github: 'https://github.com/example/example-project-1'

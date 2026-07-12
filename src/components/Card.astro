@@ -23,6 +23,12 @@ interface Props {
 
 const { entry } = Astro.props;
 const { data, id } = entry;
+
+// Tech chips are capped to keep the row on a single line (the full list still
+// lives in data-tech for search).
+const maxTech = 3;
+const shownTech = data.tech.slice(0, maxTech);
+const extraTech = data.tech.length - maxTech;
 ---
 
 <article
@@ -32,21 +38,53 @@ const { data, id } = entry;
   data-tech={data.tech.join(', ')}
   data-author={data.builtBy.map((person) => person.name).join(', ')}
   data-description={data.description}
-  class="border-line bg-surface overflow-hidden rounded-[var(--radius-card)] border"
+  class="group border-line bg-surface overflow-hidden rounded-[var(--radius-card)] border transition duration-200 ease-in-out hover:-translate-y-2 hover:shadow-2xl"
 >
   <a href={`/projects/${id}`} class="block">
     <CardCover cover={data.cover} title={data.title} />
     <div class="p-4">
       <div class="flex items-baseline justify-between gap-2">
-        <h2 class="font-semibold tracking-tight">{data.title}</h2>
-        <span class="text-muted shrink-0 text-xs">{data.year}</span>
+        <h2
+          class="group-hover:text-accent font-semibold tracking-tight transition-colors"
+        >
+          {data.title}
+        </h2>
+        <span
+          class="text-muted group-hover:text-ink shrink-0 text-xs transition-colors"
+        >
+          {data.year}
+        </span>
       </div>
       {
         /* Plain text — the whole card is already a link, so no nested anchors. */
       }
-      <p class="text-muted mt-1 text-sm">
+      <p
+        class="group-hover:text-ink text-muted mt-1 truncate text-sm transition-colors"
+      >
         Built by {data.builtBy.map((person) => person.name).join(', ')}
       </p>
+      <p
+        class="group-hover:text-ink text-muted mt-2 line-clamp-2 text-sm transition-colors"
+      >
+        {data.description}
+      </p>
+
+      <ul class="mt-2 flex flex-nowrap items-start gap-1 overflow-hidden">
+        {
+          shownTech.map((t) => (
+            <li class="border-line text-muted shrink-0 rounded-full border px-2 py-0.5 text-xs whitespace-nowrap">
+              {t}
+            </li>
+          ))
+        }
+        {
+          extraTech > 0 && (
+            <li class="border-line text-muted shrink-0 rounded-full border px-2 py-0.5 text-xs whitespace-nowrap">
+              +{extraTech} more
+            </li>
+          )
+        }
+      </ul>
     </div>
   </a>
 </article>
