@@ -1,6 +1,6 @@
 ---
 title: 'Example Project 4'
-description: 'A demonstration project showing the structure of a showcase entry.'
+description: 'An example entry with a live deployment link and a minimal tech stack.'
 builtBy:
   - name: 'Example Student 4'
     url: 'https://example.com/student-4'

@@ -1,6 +1,6 @@
 ---
 title: 'Example Project 3'
-description: 'A demonstration project showing the structure of a showcase entry.'
+description: 'A placeholder project showing multiple authors across mixed domains.'
 builtBy:
   - name: 'Example Student 3'
     url: 'https://example.com/student-3'

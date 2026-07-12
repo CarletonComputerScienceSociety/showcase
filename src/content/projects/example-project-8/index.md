@@ -1,13 +1,13 @@
 ---
 title: 'Example Project 8'
-description: 'A demonstration project showing the structure of a showcase entry.'
+description: 'A sample web project used to exercise gallery filtering and search.'
 builtBy:
   - name: 'Example Student 8'
     url: 'https://example.com/student-8'
   - name: 'Example Student 6'
 tech: ['TypeScript', 'Astro', 'pnpm']
 year: 2021
-domains: ['web']
+domains: ['web', 'systems']
 github: 'https://github.com/example/example-project-8'
 deploy: 'https://example-project-8.pages.dev'
 cover: './cover.png'

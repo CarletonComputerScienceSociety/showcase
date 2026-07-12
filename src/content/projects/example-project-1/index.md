@@ -1,6 +1,6 @@
 ---
 title: 'Example Project 1'
-description: 'A demonstration project showing the structure of a showcase entry.'
+description: 'An example project demonstrating the frontmatter shape for a showcase entry.'
 builtBy:
   - name: 'Example Student 1'
     url: 'https://example.com/student-1'
@@ -10,7 +10,7 @@ builtBy:
     url: 'https://example.com/student-4'
 tech: ['TypeScript', 'pnpm']
 year: 2021
-domains: ['web', cybersecurity]
+domains: ['web', 'cybersecurity']
 github: 'https://github.com/example/example-project-1'
 cover: './cover.png'
 ---

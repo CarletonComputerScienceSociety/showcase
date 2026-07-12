@@ -2,8 +2,5 @@
   "name": "Example Student 1",
   "url": "https://example.com/student-1",
   "year": 2022,
-  "inRing": true,
-  "social": {
-    "github": "https://github.com/example/student-1"
-  }
+  "inRing": true
 }

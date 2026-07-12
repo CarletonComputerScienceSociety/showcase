@@ -1,6 +1,6 @@
 ---
 title: 'Example Project 6'
-description: 'A demonstration project showing the structure of a showcase entry.'
+description: 'A placeholder full-stack example spanning web and AI/ML domains.'
 builtBy:
   - name: 'Example Student 6'
     url: 'https://example.com/student-6'
