@@ -32,32 +32,32 @@ const { data, id } = entry;
   data-tech={data.tech.join(', ')}
   data-author={data.builtBy.map((person) => person.name).join(', ')}
   data-description={data.description}
-  class="border-line bg-surface overflow-hidden rounded-[var(--radius-card)] border"
+  class="group border-line bg-surface overflow-hidden rounded-[var(--radius-card)] border duration-200 ease-in-out hover:-translate-y-2 hover:shadow-2xl hover:transition"
 >
   <a href={`/projects/${id}`} class="block">
     <CardCover cover={data.cover} title={data.title} />
     <div class="p-4">
       <div class="flex items-baseline justify-between gap-2">
-        <h2 class="font-semibold tracking-tight">{data.title}</h2>
+        <h2 class="group-hover:text-accent font-semibold tracking-tight">
+          {data.title}
+        </h2>
         <span class="text-muted shrink-0 text-xs">{data.year}</span>
       </div>
       {
         /* Plain text — the whole card is already a link, so no nested anchors. */
       }
-      <p class="text-muted mt-1 text-sm">
+      <p class="group-hover:text-ink text-muted mt-1 text-sm">
         Built by {data.builtBy.map((person) => person.name).join(', ')}
 
-        <p class="text-muted line-clamp-2 text-sm">
+        <p class="group-hover:text-ink text-muted line-clamp-2 text-sm">
           {data.description}
         </p>
       </p>
 
-      <ul
-        class="mt-2 flex max-h-12 flex-wrap items-start gap-1 overflow-hidden"
-      >
+      <ul class="mt-2 flex h-12 flex-wrap items-start gap-1 overflow-hidden">
         {
           data.tech.map((t) => (
-            <li class="border-line text-muted rounded-full border px-2 py-0.5 text-xs">
+            <li class="group-hover:bg-accent/10 group-hover:text-ink border-line text-muted rounded-full border px-2 py-0.5 text-xs">
               {t}
             </li>
           ))
