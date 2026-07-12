@@ -6,7 +6,7 @@ builtBy:
     url: 'https://example.com/student-7'
 tech: ['TypeScript', 'Java', 'Rust']
 year: 2024
-domains: ['infrastructure','hardware']
+domains: ['infrastructure', 'hardware']
 github: 'https://github.com/example/example-project-7'
 cover: './cover.png'
 ---
