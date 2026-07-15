@@ -16,6 +16,16 @@ const {
 
 <html lang="en">
   <head>
+    <!-- Checks whether user set to dark mode or prefers-color-scheme is dark -->
+    <script is:inline>
+      const saved = localStorage.getItem('theme');
+      if (
+        saved === 'dark' ||
+        (!saved && matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
     <meta charset="utf-8" />
     <!-- Favicon: add files to public/ then uncomment (favicon ticket)
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
