@@ -16,21 +16,33 @@ interface Props {
 const { cover, title } = Astro.props;
 ---
 
-<div class="bg-canvas aspect-video overflow-hidden">
-  {cover ? (
-    <Image
-      src={cover}
-      alt={`Cover image for ${title}`}
-      width={cover.width}
-      height={cover.height}
-      loading="lazy"
-      class="h-full w-full object-cover"
-    />
-  ) : (
-    <div>
-      <p>
-        {title}
-      </p>
-    </div>
-  )}
+<div class="bg-canvas relative aspect-video overflow-hidden">
+  {
+    cover ? (
+      <div class="h-full w-full">
+        <Image
+          src={cover}
+          alt={`Cover image for ${title}`}
+          width={cover.width}
+          height={cover.height}
+          loading="lazy"
+          class="h-full w-full object-cover blur-sm"
+        />
+        <Image
+          src={cover}
+          alt={`Cover image for ${title}`}
+          width={cover.width}
+          height={cover.height}
+          loading="lazy"
+          class="absolute inset-0 h-full w-full object-contain"
+        />
+      </div>
+    ) : (
+      <div class="bg-accent flex h-full w-full items-center justify-center p-3">
+        <p class="text-accent-contrast text-center text-3xl font-bold">
+          {title}
+        </p>
+      </div>
+    )
+  }
 </div>
