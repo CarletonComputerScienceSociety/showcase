@@ -1,12 +1,37 @@
 ---
-/*
- * SCAFFOLD: minimal footer. A volunteer ticket builds this out (copyright +
- * GitHub/social links). Keep the Carleton accent bar.
- */
+import { Icon } from 'astro-icon/components';
+const year = new Date().getFullYear();
 ---
 
 <footer class="text-muted bg-canvas sticky bottom-0 z-10 text-sm">
   <!-- Carleton accent bar -->
   <div class="bg-accent/80 h-0.5 w-full"></div>
-  <div class="site-container py-6">Carleton Computer Science Society</div>
+  <div
+    class="mx-auto flex max-w-5xl flex-col items-center gap-2 px-4 py-4 sm:flex-row sm:justify-between"
+  >
+    <p>
+      © {year}{' '}
+      <a
+        href="https://ccss.carleton.ca"
+        target="_blank"
+        rel="noopener"
+        class="hover:text-accent underline-offset-2 hover:underline"
+      >
+        Carleton Computer Science Society
+      </a>
+    </p>
+    <a
+      href="https://github.com/CarletonComputerScienceSociety/showcase"
+      target="_blank"
+      rel="noopener"
+      class="hover:text-accent inline-flex items-center gap-1"
+    >
+      GitHub
+      <Icon
+        name="lucide:external-link"
+        class="h-3.5 w-3.5"
+        aria-hidden="true"
+      />
+    </a>
+  </div>
 </footer>
