@@ -9,11 +9,15 @@ const path = Astro.url.pathname;
 
 <header class="border-line border-b">
   <div class="site-container flex items-center justify-between gap-4 py-4">
-    <a href="/projects" class="text-lg font-bold tracking-tight">
+    <a
+      href="/projects"
+      class="flex items-center gap-2 text-lg font-bold tracking-tight"
+    >
+      <img src="/ccss-logo.svg" alt="CCSS logo" class="h-6 w-auto" />
       Carleton Computer Science <span class="text-accent">Showcase</span>
     </a>
     <div class="grouped flex items-center gap-5">
-      <nav class="flex gap-5 text-sm">
+      <nav class="flex gap-5">
         {
           navLinks.map(({ href, label }) => (
             <a
@@ -21,7 +25,7 @@ const path = Astro.url.pathname;
               aria-current={path.startsWith(href) ? 'page' : undefined}
               class:list={[
                 'hover:text-accent transition-colors',
-                path.startsWith(href) ? 'text-accent' : 'text-muted',
+                path.startsWith(href) ? 'text-accent' : 'text-ink',
               ]}
             >
               {label}
