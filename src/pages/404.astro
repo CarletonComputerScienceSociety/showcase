@@ -4,26 +4,31 @@ import Base from '../layouts/Base.astro';
 
 <Base title="Page not found · CCSS Showcase">
   <style>
-    section{
-      text-align: center; 
-      font:var(--font-sans);
-      font-size: 1.3rem;
-      color:var(--color-muted);
+    section {
+      text-align: center;
+      font: var(--font-sans);
+      font-size: var(--text-2xl);
+      color: var(--color-muted);
     }
-    a,p,h1{
-      line-height: 2;
+    #error {
+      font-size: calc(var(--text-3xl) * 3.5);
+      margin-bottom: 0;
     }
-    #error{
-      font-size: 6rem;
+    h1 {
+      margin-bottom: calc(var(--spacing) * 2);
     }
-    a{
-      background-color:var(--color-accent);
-      color:var(--color-surface);
-      padding: 6px 8px;
+    p {
+      margin-bottom: calc(var(--spacing) * 9);
+    }
+    a {
+      background-color: var(--color-accent);
+      color: var(--color-surface);
+      padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
       border-radius: var(--radius-card);
+      font-size: var(--text-3xl);
     }
-    a:hover{
-      background-color:var(--color-ink);
+    a:hover {
+      background-color: var(--color-ink);
     }
   </style>
   <section>
