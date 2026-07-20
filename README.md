@@ -20,6 +20,8 @@ v4](https://tailwindcss.com) · pnpm.
 
 ## Adding a project
 
+The project cover is optional. If you choose to include one, a 16:9, around 1600×900 is recommended, though other image sizes are also supported.
+
 🚧 **Coming soon.**
 
 ## Joining the webring

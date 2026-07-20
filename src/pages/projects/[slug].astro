@@ -102,13 +102,17 @@ const { Content } = await render(entry);
       </div>
     </header>
 
-    <img
-      src={data.cover.src}
-      alt={`Cover image for ${data.title}`}
-      width={data.cover.width}
-      height={data.cover.height}
-      class="border-line mt-6 w-full rounded-[var(--radius-card)] border"
-    />
+    {
+      data.cover && (
+        <img
+          src={data.cover.src}
+          alt={`Cover image for ${data.title}`}
+          width={data.cover.width}
+          height={data.cover.height}
+          class="border-line mt-6 w-full rounded-[var(--radius-card)] border"
+        />
+      )
+    }
 
     {
       /* Contributor markdown body — needs prose styling (detail design ticket). */
