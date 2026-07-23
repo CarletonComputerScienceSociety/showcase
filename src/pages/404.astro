@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Page not found · CCSS Showcase">
+  <style>
+    section {
+      text-align: center;
+      font: var(--font-sans);
+      font-size: var(--text-2xl);
+      color: var(--color-muted);
+    }
+    #error {
+      font-size: calc(var(--text-3xl) * 3.5);
+      margin-bottom: 0;
+    }
+    h1 {
+      margin-bottom: calc(var(--spacing) * 2);
+    }
+    p {
+      margin-bottom: calc(var(--spacing) * 9);
+    }
+    a {
+      background-color: var(--color-accent);
+      color: var(--color-surface);
+      padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+      border-radius: var(--radius-card);
+      font-size: var(--text-3xl);
+    }
+    a:hover {
+      background-color: var(--color-ink);
+    }
+  </style>
+  <section>
+    <p id="error">404</p>
+    <h1>Page not found</h1>
+    <p>That page doesn't exist (or moved). Try the project gallery.</p>
+    <a href="/projects">Back to projects</a>
+  </section>
+</Base>
