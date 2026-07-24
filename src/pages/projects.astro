@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import { Icon } from 'astro-icon/components';
 import Card from '../components/Card.astro';
 
 const projects = await getCollection('projects');
@@ -8,11 +9,26 @@ projects.sort((a, b) => b.data.year - a.data.year);
 ---
 
 <Base title="Projects · Carleton Computer Science Showcase">
-  <h1 class="text-2xl font-bold tracking-tight">Projects</h1>
-  <p class="text-muted mt-1">
-    Projects built by Carleton Computer Science students.
-  </p>
+  <div
+    class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between"
+  >
+    <div>
+      <h1 class="text-2xl font-bold tracking-tight">Projects</h1>
+      <p class="text-muted mt-1">
+        Projects built by Carleton Computer Science students.
+      </p>
+    </div>
 
+    <a
+      href="https://github.com/CarletonComputerScienceSociety/showcase#adding-a-project"
+      target="_blank"
+      rel="noopener"
+      class="bg-accent text-accent-contrast inline-flex w-full items-center justify-center gap-1 rounded-md px-4 py-2 text-center text-sm font-medium opacity-100 transition-opacity duration-200 hover:opacity-90 sm:w-auto sm:shrink-0"
+    >
+      <Icon name="lucide:plus" aria-hidden="true" />
+      <span> Add a project </span>
+    </a>
+  </div>
   {
     /*
     FILTER BAR insertion point — "domain + year filter" ticket.
