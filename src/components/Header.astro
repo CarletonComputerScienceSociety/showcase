@@ -14,7 +14,12 @@ const path = Astro.url.pathname;
       class="flex items-center gap-2 text-lg font-bold tracking-tight"
     >
       <img src="/ccss-logo.svg" alt="CCSS logo" class="h-auto w-7" />
-      Carleton Computer Science <span class="text-accent">Showcase</span>
+      <!-- Wordmark is one flex item so it stays a single run of text -->
+      <span>
+        <span class="hidden md:inline">Carleton Computer Science </span><span
+          class="text-accent">Showcase</span
+        >
+      </span>
     </a>
     <div class="grouped flex items-center gap-5">
       <nav class="flex gap-5">
