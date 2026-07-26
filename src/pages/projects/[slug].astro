@@ -9,8 +9,10 @@
  * prose styling (the project has no typography plugin yet).
  */
 import { getCollection, render } from 'astro:content';
+import { Icon } from 'astro-icon/components';
 import Base from '../../layouts/Base.astro';
 import { DOMAIN_LABELS } from '../../lib/domains';
+import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -23,6 +25,11 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { data } = entry;
 const { Content } = await render(entry);
+
+const dividerClass = 'border-line';
+const maxTech = 10;
+const shownTech = data.tech.slice(0, maxTech);
+const hiddenTech = data.tech.slice(maxTech, data.tech.length);
 ---
 
 <Base
@@ -33,92 +40,244 @@ const { Content } = await render(entry);
     >&larr; All projects</a
   >
 
-  <article class="mt-4">
+  <article class="mt-4 flex flex-col gap-5">
     <header class="flex flex-col gap-3">
-      <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <div
+        class="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2"
+      >
         <h1 class="text-3xl font-bold tracking-tight">{data.title}</h1>
-        <span class="text-muted text-sm"
-          >{data.domains.map((d) => DOMAIN_LABELS[d]).join(', ')} · {
-            data.year
-          }</span
-        >
+        <span class="text-muted text-sm">
+          {data.domains.map((d) => DOMAIN_LABELS[d]).join(', ')} · {data.year}
+        </span>
       </div>
-      <p class="text-muted text-lg">{data.description}</p>
 
-      <p class="text-muted text-sm">
-        Built by{' '}
-        {
-          data.builtBy.map((person, i) => (
-            <Fragment>
-              {i > 0 && ', '}
-              {person.url ? (
-                <a
-                  href={person.url}
-                  class="hover:text-accent underline"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  {person.name}
-                </a>
-              ) : (
-                person.name
-              )}
-            </Fragment>
-          ))
-        }
-      </p>
+      <div class="flex flex-wrap items-center justify-between gap-x-8 gap-y-2">
+        <p class="text-muted text-lg">
+          {data.description}
+        </p>
 
-      <ul class="flex flex-wrap gap-1.5">
-        {
-          data.tech.map((t) => (
-            <li class="border-line text-muted rounded-full border px-2 py-0.5 text-xs">
-              {t}
-            </li>
-          ))
-        }
-      </ul>
+        <p class="text-muted text-sm">
+          Built by{' '}
+          {
+            data.builtBy.map((person, i) => (
+              <Fragment>
+                {i > 0 && ', '}
+                {person.url ? (
+                  <a
+                    href={person.url}
+                    class="hover:text-accent underline"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    {person.name}
+                  </a>
+                ) : (
+                  person.name
+                )}
+              </Fragment>
+            ))
+          }
+        </p>
+      </div>
+    </header>
 
-      <div class="flex flex-wrap gap-3">
-        <a
-          href={data.github}
-          target="_blank"
-          rel="noopener"
-          class="bg-ink text-canvas hover:bg-accent rounded-md px-3 py-1.5 text-sm"
-        >
-          GitHub
-        </a>
+    <hr class={dividerClass} />
+
+    {
+      data.cover && (
+        <>
+          <Image
+            src={data.cover}
+            alt={`Cover image for ${data.title}`}
+            width={data.cover.width}
+            height={data.cover.height}
+            class="border-line mx-auto h-auto max-h-[900px] w-auto max-w-full rounded-[var(--radius-card)] border object-contain"
+          />
+          <hr class={dividerClass} />
+        </>
+      )
+    }
+
+    <div class="flex flex-col gap-x-15 gap-y-5 md:flex-row md:justify-between">
+      <div class="flex flex-3 flex-row flex-wrap gap-2 md:flex-nowrap">
+        <p class="text-muted mr-1 whitespace-nowrap md:py-1">Tech stack</p>
+
+        <ul id="techList" class="flex flex-wrap items-center gap-1.5">
+          {
+            shownTech.map((t) => (
+              <li class="border-line text-muted rounded-full border-[1.5px] px-3 py-1 text-sm">
+                {t}
+              </li>
+            ))
+          }
+          {
+            hiddenTech.map((t) => (
+              <li class="border-line text-muted extraTech hidden rounded-full border-[1.5px] px-3 py-1 text-sm">
+                {t}
+              </li>
+            ))
+          }
+          {
+            hiddenTech.length > 0 && (
+              <button
+                id="extraTechToggle"
+                class="hover:bg-accent hover:text-accent-contrast bg-ink border-line text-canvas rounded-full border-[1.5px] px-3 py-1 text-sm"
+              >
+                +{hiddenTech.length} more
+              </button>
+            )
+          }
+        </ul>
+      </div>
+
+      <div class="flex flex-1 gap-3">
         {
-          data.deploy && (
+          data.deploy ? (
+            <>
+              <a
+                href={data.github}
+                target="_blank"
+                rel="noopener"
+                class="border-line hover:text-accent flex h-10 flex-1 items-center justify-center gap-2 rounded-md border-[1.5px] px-3 py-1.5 text-center md:self-start"
+              >
+                GitHub
+              </a>
+              <a
+                href={data.deploy}
+                target="_blank"
+                rel="noopener"
+                class="bg-ink text-canvas hover:bg-accent hover:text-accent-contrast flex h-10 flex-1 items-center justify-center gap-2 rounded-md px-3 py-1.5 text-center whitespace-nowrap md:self-start"
+              >
+                Live site
+                <Icon name="lucide:external-link" class="h-4 w-4" />
+              </a>
+            </>
+          ) : (
             <a
-              href={data.deploy}
+              href={data.github}
               target="_blank"
               rel="noopener"
-              class="border-line hover:text-accent rounded-md border px-3 py-1.5 text-sm"
+              class="bg-ink text-canvas hover:bg-accent flex h-10 flex-1 items-center justify-center rounded-md px-3 py-1.5 text-center md:self-start"
             >
-              Live site
+              GitHub
             </a>
           )
         }
       </div>
-    </header>
+    </div>
 
-    {
-      data.cover && (
-        <img
-          src={data.cover.src}
-          alt={`Cover image for ${data.title}`}
-          width={data.cover.width}
-          height={data.cover.height}
-          class="border-line mt-6 w-full rounded-[var(--radius-card)] border"
-        />
-      )
-    }
+    <hr class={dividerClass} />
 
-    {
-      /* Contributor markdown body — needs prose styling (detail design ticket). */
-    }
-    <div class="mt-8 flex flex-col gap-4">
+    <div class="markdown mt-8 flex flex-col gap-4">
       <Content />
     </div>
   </article>
+
+  <style>
+    @reference "../../styles/global.css";
+
+    .markdown {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        @apply mt-6;
+      }
+
+      h1 {
+        @apply text-5xl;
+      }
+
+      h2 {
+        @apply text-4xl;
+      }
+
+      h3 {
+        @apply text-3xl;
+      }
+
+      h4 {
+        @apply text-2xl;
+      }
+
+      h5 {
+        @apply text-xl;
+      }
+
+      h6 {
+        @apply text-lg;
+      }
+
+      pre {
+        @apply rounded-lg p-3;
+      }
+
+      code:not(pre code) {
+        @apply bg-muted/25 rounded-sm px-1 py-0.5;
+      }
+
+      ul {
+        @apply list-disc pl-8;
+      }
+
+      ol {
+        @apply list-decimal pl-8;
+      }
+
+      a {
+        @apply hover:text-accent text-muted underline;
+      }
+
+      > blockquote {
+        @apply bg-muted/20;
+      }
+
+      blockquote {
+        @apply border-accent border-l-6 py-3 pl-8;
+
+        p {
+          @apply mb-2;
+        }
+      }
+
+      table {
+        @apply w-fit border-collapse border;
+
+        th,
+        td {
+          @apply border p-2;
+        }
+
+        tbody tr {
+          @apply odd:bg-muted/15;
+        }
+      }
+
+      img {
+        @apply mx-auto mt-4 h-auto max-h-[750px] w-auto max-w-full object-contain;
+      }
+    }
+  </style>
+
+  <script>
+    const button = document.getElementById('extraTechToggle');
+    const items = document.querySelectorAll('.extraTech');
+    let isExpanded = false;
+
+    if (button && items) {
+      const buttonText = button.innerText;
+
+      button.addEventListener('click', () => {
+        isExpanded = !isExpanded;
+
+        items.forEach((item) => {
+          item.classList.toggle('hidden', !isExpanded);
+        });
+
+        button.textContent = isExpanded ? 'Show less' : buttonText;
+      });
+    }
+  </script>
 </Base>
