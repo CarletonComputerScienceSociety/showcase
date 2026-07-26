@@ -10,7 +10,6 @@ year: 2021
 domains: ['web', 'systems']
 github: 'https://github.com/example/example-project-8'
 deploy: 'https://example-project-8.pages.dev'
-cover: './cover.png'
 ---
 
 ## Overview

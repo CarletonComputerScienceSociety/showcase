@@ -41,7 +41,7 @@ const projects = defineCollection({
         .min(1),
       github: z.url(),
       deploy: z.url().optional(),
-      cover: image(),
+      cover: image().optional(),
     }),
 });
 
