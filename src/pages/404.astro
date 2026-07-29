@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Page not found · CCSS Showcase">
+  <section
+    class="flex min-h-[60vh] flex-col items-center justify-center text-center"
+  >
+    <p class="text-accent text-8xl leading-none font-bold tracking-tight">
+      404
+    </p>
+    <h1 class="mt-6 text-3xl font-bold tracking-tight">Page not found</h1>
+    <p class="text-muted mt-3">
+      That page doesn't exist (or moved). Try the project gallery.
+    </p>
+    <a
+      href="
+      projects"
+      class="rounded-card bg-accent text-accent-contrast hover:bg-accent/85 mt-2 inline-block px-3 py-2 transition-colors"
+    >
+      Back to projects
+    </a>
+  </section>
+</Base>
