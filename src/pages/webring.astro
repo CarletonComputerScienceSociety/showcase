@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import CTAButton from '../components/CTAButton.astro';
 import RingGraph from '../components/RingGraph.astro';
 
 const members = await getCollection('webring');
@@ -11,11 +12,22 @@ const displayUrl = (url: string) =>
 ---
 
 <Base title="Webring · Carleton Computer Science Showcase">
-  <h1 class="text-2xl font-bold tracking-tight">Webring</h1>
-  <p class="text-muted mt-1">
-    Personal sites of Carleton Computer Science students, linked into a ring.
-  </p>
+  <div
+    class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between"
+  >
+    <div>
+      <h1 class="text-2xl font-bold tracking-tight">Webring</h1>
+      <p class="text-muted mt-1">
+        Personal sites of Carleton Computer Science students, linked into a
+        ring.
+      </p>
+    </div>
 
+    <CTAButton
+      label="Join the webring"
+      href="https://github.com/CarletonComputerScienceSociety/showcase#joining-the-webring"
+    />
+  </div>
   {
     /*
     Two-column layout: directory table + graph panel. Stacks on mobile (table
