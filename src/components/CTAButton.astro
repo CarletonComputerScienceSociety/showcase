@@ -1,0 +1,20 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  label: string;
+  href: string;
+}
+
+const { label, href } = Astro.props;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener"
+  class="bg-accent text-accent-contrast inline-flex w-full items-center justify-center gap-1 rounded-md px-4 py-2 text-center text-sm font-medium transition-opacity duration-200 hover:opacity-90 sm:w-auto sm:shrink-0"
+>
+  <Icon name="lucide:plus" aria-hidden="true" />
+  <span>{label}</span>
+</a>
