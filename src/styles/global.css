@@ -73,3 +73,66 @@ html.dark {
     padding-inline: 0;
   }
 }
+
+/* 
+ * Webring Graph Styling
+ */
+
+#webring-graph-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* 
+ * Tooltip Styling 
+ */
+
+#webring-tooltip {
+  position: fixed;
+  display: none;
+  pointer-events: none;
+  z-index: 1000;
+  padding: 0.5rem 0.75rem;
+}
+
+.tooltip-name {
+  font-weight: 600;
+}
+
+.tooltip-year {
+  font-style: italic;
+}
+
+.tooltip-hostname {
+  color: var(--color-accent);
+}
+
+/* 
+ * Ring Graph Styling 
+ */
+
+#ring-graph .ring-edge {
+  stroke: var(--color-line);
+}
+
+#ring-graph .ring-node,
+#ring-graph .ring-node-circle {
+  fill: var(--color-muted);
+  transition: fill 0.2s;
+  cursor: pointer;
+}
+
+#ring-graph .ring-node-circle:hover,
+#ring-graph .ring-node-circle.is-match {
+  fill: var(--color-accent);
+}
+
+#ring-graph .ring-node-circle.is-dimmed {
+  opacity: 0.35;
+}
+
+#ring-graph .ring-label {
+  fill: var(--color-muted);
+  font-size: 12px;
+}

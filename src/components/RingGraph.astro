@@ -1,21 +1,53 @@
 ---
-/*
- * STUB — placeholder for the ring graph visualization.
- *
- * Two volunteer tickets build this out:
- *   1. "Ring graph viz" — render members as nodes (force-directed / canvas /
- *      SVG) inside this panel. Use the webring collection or the generated
- *      ring data. Carleton-themed, reads design tokens via var(--color-*).
- *   2. "Ring graph search" — search by name/year that pans/focuses a node and
- *      highlights matches (depends on the viz ticket).
- *
- * Kept as its own component so the page layout (webring.astro) is stable and
- * the graph tickets only touch this file.
- */
+import { getCollection } from 'astro:content';
+
+const students = await getCollection('webring');
+
+const nodes = students.map((student) => ({
+  id: student.id,
+  name: student.data.name,
+  url: student.data.url,
+  year: student.data.year,
+  inRing: student.data.inRing,
+}));
+
+const links = [];
+
+for (let i = 0; i < nodes.length; i++) {
+  for (let j = i + 1; j < nodes.length; j++) {
+    if (nodes[i].year === nodes[j].year) {
+      links.push({
+        source: nodes[i].id,
+        target: nodes[j].id,
+      });
+    }
+  }
+}
+
+const graph = { nodes, links };
 ---
 
 <div
-  class="border-line bg-surface text-muted flex aspect-square w-full items-center justify-center rounded-[var(--radius-card)] border border-dashed text-sm lg:aspect-auto lg:min-h-[28rem]"
+  class="border-line bg-surface text-muted flex aspect-square w-full items-center justify-center rounded-[var(--radius-card)] border text-sm lg:aspect-auto lg:min-h-[28rem]"
 >
-  Ring graph — coming soon
+  <svg id="webring-graph-svg"></svg>
+
+  <div
+    id="webring-tooltip"
+    class="webring-tooltip border-line bg-surface rounded-[var(--radius-card)] border"
+  >
+    <div class="tooltip-name"></div>
+    <div class="tooltip-year"></div>
+    <div class="tooltip-status"></div>
+    <div class="tooltip-hostname"></div>
+  </div>
 </div>
+
+<script
+  is:inline
+  type="application/json"
+  id="webring-data"
+  set:html={JSON.stringify(graph)}
+/>
+
+<script src="../scripts/webring-graph.ts"></script>
