@@ -108,24 +108,22 @@ svg.call(zoom);
 
 // #region Links
 
-const linkGroup = graphGroup.append('g').attr('class', 'ring-edge');
-
-const visibleNodes = graphData.nodes.filter((student) => student.inRing);
+const visibleNodes = graphData.nodes;
 
 const nodeById = new Map(visibleNodes.map((node) => [node.id, node]));
 
-const visibleLinks: GraphLink[] = graphData.links
-  .filter((link) => nodeById.has(link.source) && nodeById.has(link.target))
-  .map((link) => {
-    const source = nodeById.get(link.source);
-    const target = nodeById.get(link.target);
+const visibleLinks: GraphLink[] = graphData.links.map((link) => {
+  const source = nodeById.get(link.source);
+  const target = nodeById.get(link.target);
 
-    if (!source || !target) {
-      throw new Error(`Invalid graph link: ${link.source} -> ${link.target}`);
-    }
+  if (!source || !target) {
+    throw new Error(`Invalid graph link: ${link.source} -> ${link.target}`);
+  }
 
-    return { source, target };
-  });
+  return { source, target };
+});
+
+const linkGroup = graphGroup.append('g').attr('class', 'ring-edge');
 
 const links = linkGroup
   .selectAll<SVGLineElement, GraphLink>('line')

@@ -3,13 +3,22 @@ import { getCollection } from 'astro:content';
 
 const students = await getCollection('webring');
 
-const nodes = students.map((student) => ({
-  id: student.id,
-  name: student.data.name,
-  url: student.data.url,
-  year: student.data.year,
-  inRing: student.data.inRing,
-}));
+const nodes = students
+  .filter((student) => student.data.inRing)
+  .sort((studentA, studentB) => {
+    // Compare graduation year
+    if (studentA.data.year < studentB.data.year) return -1;
+    if (studentA.data.year > studentB.data.year) return 1;
+    // If graduation year is the same, compare student names
+    return studentA.data.name.localeCompare(studentB.data.name);
+  })
+  .map((student) => ({
+    id: student.id,
+    name: student.data.name,
+    url: student.data.url,
+    year: student.data.year,
+    inRing: student.data.inRing,
+  }));
 
 const links = [];
 
